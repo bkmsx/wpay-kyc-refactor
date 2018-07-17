@@ -45,6 +45,7 @@
     $('#amount').html(token_amount * conversion_rate + ' ' + getCookie('currency'));
     $('#token_amount').html(token_amount + ' WGP');
 
+    //init form data
     $('#token_amount_form').val(token_amount);
     $('#currency').val(getCookie('currency'));
     $('#email').val(getCookie('email'));
@@ -61,14 +62,10 @@ function purchase() {
     data: $('#data_form').serialize(),
     success: function(result) {
       $('.loading').hide();
-      console.log(result);
-      jsonData = JSON.parse(result);
-      //console.log(jsonData);
-      alert(jsonData.code);
-      if (jsonData.code == 200) {
+      json = JSON.parse(result);
+      if (json.code == 200) {
         window.open('thank-you.php', '_self');
       } else {
-        alert('Error');
         $('#error_dialog').modal('show');
         $('#error_message').html(json.message);
       }

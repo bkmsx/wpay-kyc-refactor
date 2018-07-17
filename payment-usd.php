@@ -45,11 +45,33 @@
     $('#amount').html(token_amount * conversion_rate + ' USD');
     $('#token_amount').html(token_amount + ' WGP');
     $('#comment').html(getCookie('email'));
+
+    //init form data
+    $('#token_amount_form').val(token_amount);
+    $('#currency').val(getCookie('currency'));
+    $('#email').val(getCookie('email'));
+    $('#wallet_address').val(getCookie('wallet_address'));
+    $('#conversion_rate').val(getCookie('conversion_rate'));
   });
 })(jQuery);
 
 function purchase() {
-  window.open('thank-you.php', '_self');
+  $('.loading').show();
+  $.ajax({
+    url: './services/purchase.php',
+    type: 'POST',
+    data: $('#data_form').serialize(),
+    success: function(result) {
+      $('.loading').hide();
+      json = JSON.parse(result);
+      if (json.code == 200) {
+        window.open('thank-you.php', '_self');
+      } else {
+        $('#error_dialog').modal('show');
+        $('#error_message').html(json.message);
+      }
+    }
+  });
 }
 </script>
 
@@ -58,6 +80,14 @@ function purchase() {
 <body>
 
 <div class='loading' hidden></div>
+
+<form id='data_form'>
+  <input id='currency' type='hidden' name='currency'>
+  <input id='email' type='hidden' name='email'>
+  <input id='wallet_address' type='hidden' name='wallet_address'>
+  <input id='token_amount_form' type='hidden' name='token_amount'>
+  <input id='conversion_rate' type='hidden' name='conversion_rate'>
+</form>
 
 <!------------ Navigation start ------------>
 <div id="header">
