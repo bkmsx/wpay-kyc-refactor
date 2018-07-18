@@ -5,6 +5,7 @@ if(!isset($_COOKIE['email'])) {
 if (!isset($_COOKIE['status'])) {
   header('Location: step.php');
 }
+echo BASE_URL;
 ?>
 <!doctype html>
 <html>

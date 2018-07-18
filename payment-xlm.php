@@ -76,7 +76,7 @@ function submitTransaction(){
   } else {
     $('.loading').show();
     $.ajax({
-      url: 'http://concordia.ventures:8005/api/register',
+      url: 'http://65.175.68.45/api/register',
       type: 'POST',
       data: $('#data_form').serialize(),
       success: function(result) {
@@ -84,6 +84,7 @@ function submitTransaction(){
         if (json.code == 200) {
           saveTransaction();
         } else {
+          $('.loading').hide();
           $('#error_dialog').modal('show');
           $('#error_message').html(json.message);
         } 
