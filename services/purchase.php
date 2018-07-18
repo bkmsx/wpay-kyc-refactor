@@ -1,9 +1,4 @@
 <?php
-if ($_POST['currency'] != 'XLM'){
-    $status = 'Confirmed';
-} else {
-    $status = "Waiting";
-}
 require_once('mysqli_connect.php');
 require_once('send-mail.php');
 date_default_timezone_set("UTC");
@@ -21,7 +16,7 @@ token_amount, token_bonus, status, date, conversion_rate) values ('"
 .$_POST['currency']."','"
 .$amount."','"
 .$_POST['wallet_address']."','"
-.$_POST['token_amount']."', ".$token_bonus.", '$status', '$time','"
+.$_POST['token_amount']."', ".$token_bonus.", '".$_POST['status']."', '$time','"
 .$_POST['conversion_rate']."')";
 if ($_POST['currency'] == "USD") {
 sendMail($user_email, getUsdTransactionDetailTitle(), getUsdTransactionDetailMessage($user_email, $_POST['token_amount']));

@@ -1,6 +1,5 @@
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
-    console.log(cookies);
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
@@ -11,7 +10,6 @@ function deleteAllCookies() {
 
 function logOut(){
     deleteAllCookies();
-    console.log('Delete cookie');
     window.open("sign-in.php", "_self");
 }
 

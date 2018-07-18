@@ -52,10 +52,24 @@
     $('#email').val(getCookie('email'));
     $('#wallet_address').val(getCookie('wallet_address'));
     $('#conversion_rate').val(getCookie('conversion_rate'));
+
+    $('#checkbox').change(function() {
+      if(this.checked) {
+        $('#secret_key').prop('disabled', true);
+        $('#secret_key').css('background', '#D8D8D8');
+      } else {
+        $('#secret_key').prop('disabled', false);
+        $('#secret_key').css('background', 'white');
+      }
+    })
   });
 })(jQuery);
 
 function submitTransaction(){
+  if ($('#checkbox').is(':checked')) {
+    window.open('payment-coin.php', '_self');
+    return;
+  }
   if ($('#secret_key').val() == '') {
     $('#error_dialog').modal('show');
     $('#error_message').html('Please input secret key');
@@ -66,7 +80,6 @@ function submitTransaction(){
       type: 'POST',
       data: $('#data_form').serialize(),
       success: function(result) {
-        $('.loading').hide();
         json = JSON.parse(JSON.stringify(result));
         if (json.code == 200) {
           saveTransaction();
@@ -74,6 +87,11 @@ function submitTransaction(){
           $('#error_dialog').modal('show');
           $('#error_message').html(json.message);
         } 
+      },
+      error: function(err) {
+        $('.loading').hide();
+        $('#error_dialog').modal('show');
+          $('#error_message').html('Secret key is not correct');
       }
     })
   }
@@ -83,7 +101,7 @@ function saveTransaction() {
   $.ajax({
     url: './services/purchase.php',
     type: 'POST',
-    data: $('#data_form').serialize(),
+    data: $('#form2').serialize(),
     success: function(result) {
       $('.loading').hide();
       json = JSON.parse(result);
@@ -103,12 +121,13 @@ function saveTransaction() {
 <body>
 <div class='loading' hidden></div>
 
-<form id='data_form'>
+<form id='form2'>
   <input id='currency' type='hidden' name='currency'>
   <input id='email' type='hidden' name='email'>
   <input id='wallet_address' type='hidden' name='wallet_address'>
   <input id='token_amount_form' type='hidden' name='token_amount'>
   <input id='conversion_rate' type='hidden' name='conversion_rate'>
+  <input type='hidden' name='status' value='Confirmed'>
 </form>
 
 <!------------ Navigation start ------------>
@@ -153,9 +172,11 @@ you will get <span id='token_amount' style="color:#87b44c;">4,000 WGPs </span>in
       <br><br>
       <form id='data_form'>
         Secret Key:<br><br>
-        <input id='secret_key' type="text" name='secret_key' class="input-style private-key" placeholder="">
+        <input id='secret_key' type="text" name='secret_key' class="input-style private-key">
         <input id='coins' type='hidden' name='coins'>
         <br><br><br><br><br>
+        <input id='checkbox' type='checkbox'><span style='padding-left:10px'> I want to send xlms manually</span>
+        <br><br><br><br>
       </form>
       <a href="javascript:submitTransaction()" class="btn">Continue</a> 
       

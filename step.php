@@ -14,6 +14,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link href="style.css" rel="stylesheet" type="text/css" />
 <link href="sidemenu.css" rel="stylesheet">
 <link href="media-queries.css" rel="stylesheet">
@@ -161,7 +162,7 @@
     </div>
     <div class="col-md-6 v-pad">
       Date of Birth <br><br>
-      <input name="date_of_birth" type='text' id="datepicker" class="input-style calendar"  placeholder="DD/MM/YY" value=""  />
+      <input name="date_of_birth" type='text' id="datepicker" class="input-style calendar"  placeholder="DD/MM/YYYY" value=""  />
     </div>
     <div class="col-md-6 v-pad">
       Citizenship <br><br>
@@ -242,7 +243,10 @@
 <?php include './htmls/error_dialog.html'?>
 <script>
   $(document).ready(function() {
-    $("#datepicker").datepicker();
+    $( "#datepicker" ).datepicker({
+      dateFormat: 'dd/mm/yy',//check change
+      changeYear: true
+    });
   });
   </script>
  
@@ -302,12 +306,14 @@ function submitInformation(tab) {
     data: $('#regForm').serialize(),
     success: function(result) {
       $('.loading').hide();
-      json = JSON.parse(result);
+      var index = result.indexOf('{');
+      json = JSON.parse(result.substring(index));
       if (json.code == 200) {
         tab.style.display = 'none';
         currentTab++;
         showTab(currentTab);
         setCookie('status', json.user.status);
+        setCookie('first_name', json.user.first_name);
       } else {
         $('#error_dialog').modal('show');
         $('#error_message').html(json.message);

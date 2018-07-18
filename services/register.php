@@ -58,22 +58,22 @@ else{
     );
 
     $header = ['Content-Type: application/json', 'WEB2PY-USER-TOKEN:03a7a6cb-63b2-47b2-8715-af65aabf28ed'];
-    // $result = callAPI("POST", $url, $data, $header);
+    $result_artemis = callAPI("POST", $url, $data, $header);
 
     $status = "PENDING";
-    // $data = json_decode($result);
-    // if ($data) {
-    //     if (isset($data->approval_status)) {
-    //         $status = $data->approval_status;
-    //     }	
-    // }
+    $json_artemis = json_decode($result_artemis);
+    if ($json_artemis) {
+        if (isset($json_artemis->approval_status)) {
+            $status = $json_artemis->approval_status;
+        }	
+    }
     if ($status == "CLEARED") {
-        // sendMail($_COOKIE['email'], getSuccessKycTitle(), getSuccessKycMessage($first_name, $wallet_address));
+        sendMail($_COOKIE['email'], getSuccessKycTitle(), getSuccessKycMessage($first_name, $wallet_address));
     }
 
     // Update Google sheet
     require_once('update-sheet.php');
-    // updateSheet([$_COOKIE['email'], $first_name." ".$last_name, $date_of_birth, $citizenship, $country, date('d/m/Y h:i:s', time()), $status, $wallet_address], $user['row_number']);
+    updateSheet([$_COOKIE['email'], $first_name." ".$last_name, $date_of_birth, $citizenship, $country, date('d/m/Y h:i:s', time()), $status, $wallet_address], $user['row_number']);
 
     // Update database
     $sql = "update users set first_name='"
@@ -89,7 +89,7 @@ else{
         $code = 200;
         $message = "Success";
         $user_object = [
-            'date_of_birth' => $date_of_birth,
+            'first_name' => $first_name,
             'status' => $status,
             'wallet_address' => $wallet_address
         ];

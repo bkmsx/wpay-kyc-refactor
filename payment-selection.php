@@ -66,6 +66,7 @@ var conversion_rate = 10;
 })(jQuery);
 function countPayment(){
   $('#wallet_address').prop('disabled', false);
+  $('#wallet_address').css('background', 'white');
   $('#wallet_label').show();
   if ($('#xlm').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price);
@@ -83,6 +84,8 @@ function countPayment(){
   } else {
     $('#amount').val($('#token_amount').val() * token_price * usd_price);
     $('#wallet_address').prop('disabled', true);
+    $('#wallet_address').css('background', '#D8D8D8');
+    $('#wallet_address').val('');
     $('#wallet_label').hide();
     conversion_rate = token_price * usd_price;
   }
@@ -116,7 +119,7 @@ function submitSummary(){
     } else if (currency == 'USD') {
       window.open('payment-usd.php', '_self');
     } else {
-      window.open('payment-btc-eth.php', '_self');
+      window.open('payment-coin.php', '_self');
     }
   } 
 }

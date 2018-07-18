@@ -7,7 +7,7 @@ function updateSheet($values, $row){
 	$client->setApplicationName('Wpay Sheet');
 	$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
 	$client->setAccessType('online');
-
+	
 	$client->setAuthConfig(__DIR__ . '/wpay_sheet.json');
 
 	$sheets = new Google_Service_Sheets($client);
@@ -19,13 +19,19 @@ function updateSheet($values, $row){
 	    'majorDimension' => 'ROWS',
 	    'values' => [$values],
 	]);
+	//print_r($sheets->spreadsheets_values);exit;
 
-	$sheets->spreadsheets_values->update(
-	    $spreadsheetId,
-	    $updateRange,
-	    $updateBody,
-	    ['valueInputOption' => 'USER_ENTERED']
-	);	
+	try {
+		$sheets->spreadsheets_values->update(
+			$spreadsheetId,
+			$updateRange,
+			$updateBody,
+			['valueInputOption' => 'USER_ENTERED']
+		);	
+
+	} catch (Exception $e) {
+		echo 'Caught exception: ',  $e->getMessage(), "\n";
+	}
 }
 
 ?>

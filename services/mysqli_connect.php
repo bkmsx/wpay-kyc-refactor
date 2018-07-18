@@ -1,11 +1,9 @@
 <?php
-//--------Server-----------//
 // DEFINE ('DB_USER', 'tienwgpsql');
 // DEFINE ('DB_PASSWORD', 't%210K0Ada3');
 // DEFINE ('DB_HOST', '216.198.213.85');
 // DEFINE ('DB_NAME', 'wgpdb');
 
-//--------Local-----------//
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', '');
 DEFINE ('DB_HOST', 'localhost');

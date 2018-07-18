@@ -48,7 +48,7 @@ function signUp() {
       if (json.code == 200) {
         setCookie('email', json.user.email);
         setCookie('first_name', json.user.first_name);
-        window.location.replace('step.html');
+        window.open('step.php', '_self');
       } else {
         $('#error_dialog').modal('show');
         $('#error_message').html(json.message);

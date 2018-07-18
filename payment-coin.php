@@ -51,6 +51,13 @@
     $('#email').val(getCookie('email'));
     $('#wallet_address').val(getCookie('wallet_address'));
     $('#conversion_rate').val(getCookie('conversion_rate'));
+    if (getCookie('currency') == 'ETH') {
+      $('#myInput').val('0x67fd4721d490A5E609cF8e09FCE0a217b91F1546');
+      $('#qr_wallet').attr('src', 'img/eth_wallet.png');
+    } else if (getCookie('currency') == 'XLM') {
+      $('#myInput').val('GC62NFSPXXS35MFYT36CMYJ2KZJSIYIMQABW5BPHYXDVUUHLAMTOHDLT');
+      $('#qr_wallet').attr('src', 'img/xlm_wallet.png');
+    }
   });
 })(jQuery);
 
@@ -87,6 +94,7 @@ function purchase() {
   <input id='wallet_address' type='hidden' name='wallet_address'>
   <input id='token_amount_form' type='hidden' name='token_amount'>
   <input id='conversion_rate' type='hidden' name='conversion_rate'>
+  <input type='hidden' name='status' value='Waiting'>
 </form>
 <!------------ Navigation start ------------>
 <div id="header">
@@ -122,9 +130,9 @@ function purchase() {
     <div class="wallet-address">
       <h4>Destination Wallet Address:</h4>
       <br>
-      <img src="img/qr-code.jpg" alt="">
+      <img id='qr_wallet' src="img/btc_wallet.png" alt="">
       <br><br><br>
-      <input type="text" class="input-style" value="03249mcnh238hf89wqjd092iij20fh793g7c3c2" id="myInput" readonly>
+      <input type="text" class="input-style" value="3H6F5wLq5x4FHyCp6GPnk14EkTnNqVBbDw" id="myInput" readonly>
       <button onclick="myFunction()" class="btn-copy"><i class="fa fa-copy" aria-hidden="true"></i></button>
       <div style="clear:both;"></div>         
     </div>

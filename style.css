@@ -947,6 +947,10 @@ background: #fff;
   padding:6px 20px;
 }
 
+.settings-container input[type="text"]:disabled {
+	background: rgb(187, 184, 184);
+}
+
 .dashboard-table table {
 	text-align:left;
 	font-size:11px;

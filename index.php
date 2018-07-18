@@ -47,15 +47,74 @@ if (!isset($_COOKIE['status'])) {
     var firstName = getCookie('first_name');
     $('#greeting').html(firstName);
     $('#nav_greeting').html(firstName);
+    
+    $.ajax({
+      url: './services/user-infor.php',
+      type: 'GET',
+      success: function(result) {
+        json = JSON.parse(result);
+        if (json.user.passport_location) {
+          $('#upload_form').hide();
+        };
+        setCookie('status', json.user.status);
+        if (json.user.status != 'CLEARED') {
+          $('#kyc_notice').show();
+          $('#btn_purchase').click(function(){return false});
+          setCookie('status', json.user.status);
+          setCookie('first_name', json.user.first_name);
+        }
+        for (let history of json.histories) {
+          row = $('<tr>');
+          row.append($('<td>').html(history['date']));
+          row.append($('<td>').html(history['currency']));
+          row.append($('<td>').html(history['amount']));
+          row.append($('<td>').html(history['token_amount']));
+          row.append($('<td>').html(history['token_bonus']));
+          row.append($('<td>').html(history['token_number']));
+          row.append($('<td>').html(history['conversion_rate']));
+          row.append($('<td>').html(history['status']));
+          $('#history_table').append(row);
+        }
+      }
+    });
   });
 })(jQuery);
 
+function uploadPassport(){
+  var form = $('#upload_form')[0];
+  var formData = new FormData(form);
+  $('.loading').show();
+  $.ajax({
+    url:  './services/upload-passport.php',
+    type: 'POST',
+    data: formData,
+    contentType: false,
+    cache: false,
+    processData: false,
+    success: function (result) {
+      $('.loading').hide();
+      json = JSON.parse(result);
+      if (json.code == 200) {
+        $('#upload_form').hide();
+        $('#error_dialog').modal('show');
+        $('#error_title').html('Success');
+        $('#error_title').css('color', 'green');
+        $('#error_message').html(json.message);
+      } else {
+        $('#error_dialog').modal('show');
+        $('#error_title').html('Error');
+        $('#error_title').css('color', 'red');
+        $('#error_message').html(json.message);
+      }
+    }
+  });
+}
 </script>
 
 </head>
 
 <body>
-
+<div class="loading" hidden>Loading&#8230;</div>
 <!------------ Navigation start ------------>
 <div id="header">
   <div class="blue-line"></div>
@@ -126,26 +185,30 @@ if (!isset($_COOKIE['status'])) {
     <div class="wallet-address">
       
       <div style="clear:both;"></div>
-      <br><br>
-      <a href="payment-selection.php" class="btn">Purchase</a>          
+      <label id='kyc_notice' style='color:red' hidden>You haven't passed KYC yet</label>
+      <br><br/>
+      <a id='btn_purchase' href="payment-selection.php" class="btn">Purchase</a>          
     </div>
     <br><br>
     <div style="text-align:center;">
-      <p>If you would like to change the destination wallet, please send an email to <a href="mailto:admin@wpay.sg" style="color:#87b44c;">admin@wpay.sg</a></p>
-      <div class="dashboard-line"></div>
-      <h2 style="text-transform:none;">Identity <span style="color:#87b44c;">Image</span></h2>
-      <br>
-      <br>
-      <div id="hide">
-        <label class="btn upload-btn">
-          <input type="file"/>
-          <img src="img/icon-id.png" alt=""><br><br>Upload Your Passport
-        </label>
-      </div>
-      <br><br>
-      <p>You can only upload jpg, jpeg, png, and pdf file and size is less than or equal to 4mb</p>
-      <br><br><br><br>
-      <a href="" class="btn">Submit</a>
+      <form id='upload_form'>
+        <div class="dashboard-line"></div>
+        <h2 style="text-transform:none;">Identity <span style="color:#87b44c;">Image</span></h2>
+        <br>
+        <br>
+        <div id="hide">
+          
+          <label class="btn upload-btn">
+            <input type="file" name='file'/>
+            <img src="img/icon-id.png" alt=""><br><br>Upload Your Passport
+          </label>
+          
+        </div>
+        <br><br>
+        <p>You can only upload jpg, jpeg, png, and pdf file and size is less than or equal to 4mb</p>
+        <br><br><br><br>
+        <a href="javascript:uploadPassport()" class="btn">Submit</a>
+      </form>
     </div>
   </div>
   <div class="dashboard-line"></div>
@@ -154,48 +217,18 @@ if (!isset($_COOKIE['status'])) {
   </div>
   <br><br><br><br>
   <div class="dashboard-table" style="overflow-x:auto;">
-  <table>
-            <tr valign="center">
-              <th>Date</th>
-              <th>Currency</th>
-              <th>Amount</th>
-              <th>WGP Amount</th>
-              <th>WGP Bonus</th>
-              <th>Total WGP</th>
-              <th>Conversion Rate</th>
-              <th>Status</th>
-            </tr>
-            <tr>
-              <td>10 Apr 2018 <br>03:16</td>
-              <td>ETH</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>Waiting<br> Approval</td>
-            </tr>
-            <tr>
-              <td>10 Apr 2018 <br>03:16</td>
-              <td>ETH</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>Waiting<br> Approval</td>
-            </tr>
-            <tr>
-              <td>10 Apr 2018 <br>03:16</td>
-              <td>ETH</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>Waiting<br> Approval</td>
-            </tr>        
-          </table>
+  <table id='history_table'>
+    <tr valign="center">
+      <th>Date</th>
+      <th>Currency</th>
+      <th>Amount</th>
+      <th>WGP Amount</th>
+      <th>WGP Bonus</th>
+      <th>Total WGP</th>
+      <th>Conversion Rate</th>
+      <th>Status</th>
+    </tr>
+  </table>
   </div>
 </div>
 </section>
@@ -225,7 +258,7 @@ if (!isset($_COOKIE['status'])) {
       <div style="clear:both;"></div>
     </div>
 </div>
-
+<?php include './htmls/error_dialog.html'?>
 <script>
 function myFunction() {
   var copyText = document.getElementById("myInput");
