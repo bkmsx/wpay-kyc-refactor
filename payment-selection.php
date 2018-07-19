@@ -58,7 +58,7 @@ var conversion_rate = 10;
       success: function(result) {
         json = JSON.parse(JSON.stringify(result));
         eth_price = json.data.quotes.ETH.price;
-        usd_price = json.data.quotes.USD.price;
+        usd_price = 2;
       }
     });
     countPayment();
@@ -82,31 +82,31 @@ function countPayment(){
     $('#wallet_label').html('Ethereum wallet:');
     conversion_rate = token_price * eth_price;
   } else {
-    $('#amount').val($('#token_amount').val() * token_price * usd_price);
+    $('#amount').val($('#token_amount').val() * usd_price);
     $('#wallet_address').prop('disabled', true);
     $('#wallet_address').css('background', '#D8D8D8');
     $('#wallet_address').val('');
     $('#wallet_label').hide();
-    conversion_rate = token_price * usd_price;
+    conversion_rate = usd_price;
   }
 }
 
 function submitSummary(){
   if ($('#wallet_address').val() == '' && !$('#usd').is(':checked')) {
     if ($('#xlm').is(':checked')) {
-      $('#error_message').html('You should fill in a Stellar wallet for us send tokens to');
+      $('#error_message').html('Please provide your Stellar wallet address in order for us to verify that the transaction originates from you.');
     } else if ($('#btc').is(':checked')) {
-      $('#error_message').html('You should fill in a Bitcoin wallet for us send tokens to');
+      $('#error_message').html('Please provide your Bitcoin wallet address in order for us to verify that the transaction originates from you.');
     } else if ($('#eth').is(':checked')) {
-      $('#error_message').html('You should fill in a Ethereum wallet for us send tokens to');
+      $('#error_message').html('Please provide your Ethereum wallet address in order for us to verify that the transaction originates from you.');
     } 
     $('#error_dialog').modal('show');
     return;
   }
   
   var amount = $('#token_amount').val();
-  if( amount < 40) {
-    $('#error_message').html('Minimum Purchase Amount Is 400 Tokens');
+  if( amount < 1) {
+    $('#error_message').html('Minimum Purchase Amount Is 100 Tokens');
     $('#error_dialog').modal('show');
   } else {
     var currency = $("input[name=currency]:checked").val();
@@ -161,11 +161,13 @@ function submitSummary(){
   <div class="settings-container">
     <div class="clearfix">
       <label>WGP Token Amount</label> <br><br>
-      <input id='token_amount' type="number" class="input-style" onkeyup='countPayment()' value="4000">
+      <input id='token_amount' type="number" class="input-style" onkeyup='countPayment()' value="100">
+      <br><br><br><br>1 WGP = US$ 2<br>1 WGP = 10 XLM
+
     </div>
     <div class="clearfix">
       <label id='wallet_label'>Wallet Authorization</label> <br><br>
-      <input type="text" class="input-style" value="03249mcnh238hf89wqjd092iij20fh793g7c3c2" id="wallet_address">
+      <input type="text" class="input-style" id="wallet_address">
       <div style="clear:both;"></div>
     </div>
     <div class="clearfix">

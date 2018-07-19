@@ -124,7 +124,7 @@
       <table>
         <tr valign="top">
           <td class="radio-btn"><input id='check1' type="checkbox" value="value1" oninput="this.className = ''"></td>
-          <td >I have read the Token Sale <a href="terms.html" target="_blank" style="color:#87b44c;">Terms & Conditions</a>, Privacy Policy and Eminent White Paper, and accept all terms, conditions, obligations, affirmations, representations and warranties outlined in these documents and agree to adhere to them and be legally bound by them.
+          <td >I have read the Token Sale <a href="terms.php" target="_blank" style="color:#87b44c;">Terms & Conditions</a>, Privacy Policy and W Green Pay White Paper, and accept all terms, conditions, obligations, affirmations, representations and warranties outlined in these documents and agree to adhere to them and be legally bound by them.
           </td>
         </tr>
       </table>
@@ -133,7 +133,7 @@
       <table>
         <tr valign="top">
           <td class="radio-btn"><input id='check2' type="checkbox" value="value2" oninput="this.className = ''"></td>
-          <td >I confirm that I am not citizen, permanent resident, or granted indefinite leave to remain in the United States or any jurisdiction in which the purchase of Eminent tokens (EMN) is explicitly prohibited or outlawed.</td>
+          <td >I confirm that I am not a citizen, permanent resident, or granted indefinite leave to remain in the United States or any jurisdiction in which the purchase of W Green Pay tokens (WGP) is explicitly prohibited or outlawed.</td>
         </tr>
       </table>
     </div>
@@ -277,7 +277,7 @@ function showTab(n) {
 function nextPrev(n) {
   if(!$('#check1').is(':checked') || !$('#check2').is(':checked')) {
     $('#error_dialog').modal('show');
-    $('#error_message').html('Please agree with terms and conditions before submiting information');
+    $('#error_message').html('Please agree with the terms and conditions before proceeding. If you do not agree, you may not participate in this token sale.');
     return false;
   }
   // This function will figure out which tab to display

@@ -55,7 +55,7 @@
       $('#myInput').val('0x67fd4721d490A5E609cF8e09FCE0a217b91F1546');
       $('#qr_wallet').attr('src', 'img/eth_wallet.png');
     } else if (getCookie('currency') == 'XLM') {
-      $('#myInput').val('GC62NFSPXXS35MFYT36CMYJ2KZJSIYIMQABW5BPHYXDVUUHLAMTOHDLT');
+      $('#myInput').val('GASYLAXG536GZGLZBGQ4JFAYT43XALS64EYTONXWOGRLRVZRBSP74TIT');
       $('#qr_wallet').attr('src', 'img/xlm_wallet.png');
     }
   });
@@ -94,7 +94,7 @@ function purchase() {
   <input id='wallet_address' type='hidden' name='wallet_address'>
   <input id='token_amount_form' type='hidden' name='token_amount'>
   <input id='conversion_rate' type='hidden' name='conversion_rate'>
-  <input type='hidden' name='status' value='Waiting'>
+  <input type='hidden' name='status' value='Pending'>
 </form>
 <!------------ Navigation start ------------>
 <div id="header">
@@ -137,10 +137,10 @@ function purchase() {
       <div style="clear:both;"></div>         
     </div>
     <br><br><br>
-    <h3 style="font-weight:700; text-transform:none;">You will receive:<br><span id='token_amount' style="color:#87b44c;">4,000 eminent tokens</span></h3>
+    <h3 style="font-weight:700; text-transform:none;">Upon confirmation, you will receive:<br><span id='token_amount' style="color:#87b44c;">4,000 eminent tokens</span></h3>
     <br>
     <p>You will receive a confirmation email once the transaction is validated (this may take up a few hours).
-We may email you with a request for KYC documents. If we do not receive your documentation, your funds will be returned to your wallet.</p>
+We may email you with an additional request for KYC documents. If we do not receive your documentation, your funds will be returned to your wallet.</p>
     <br><br><br>
     <a href="javascript:purchase()" class="btn">Purchase</a> 
   </div>

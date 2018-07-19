@@ -29,7 +29,7 @@ elseif(!preg_match("#[a-z]+#",$password)) {
     $message = "Password must contain lowercase letter";
 } 
 elseif($password != $confirmPass) {
-    $message = "Passwords are not matched";
+    $message = "Passwords don't match";
 }
 else {
     require_once('mysqli_connect.php');

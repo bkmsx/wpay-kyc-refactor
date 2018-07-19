@@ -18,10 +18,10 @@ if (!empty($email) && !empty($password)){
 				'status' => $user['status']
 			];
 		} else {
-			$message = "Password is not correct";
+			$message = "Password is incorrect";
 		}
 	} else {
-		$message = "Email is not correct";
+		$message = "Email is incorrect";
 	}
 	mysqli_close($dbc);
 } else {

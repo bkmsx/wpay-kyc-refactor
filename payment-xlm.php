@@ -66,10 +66,6 @@
 })(jQuery);
 
 function submitTransaction(){
-  if ($('#checkbox').is(':checked')) {
-    window.open('payment-coin.php', '_self');
-    return;
-  }
   if ($('#secret_key').val() == '') {
     $('#error_dialog').modal('show');
     $('#error_message').html('Please input secret key');
@@ -114,6 +110,23 @@ function saveTransaction() {
       }
     }
   });
+}
+
+function showContinue() {
+  $('#btn_continue').show();
+  $('#ask_form').hide();
+}
+function showSecretInput() {
+  $('#data_form').show();
+  $('#ask_form').hide();
+}
+function showAskForm() {
+  $('#data_form').hide();
+  $('#ask_form').show();
+}
+
+function continueNextPage() {
+  window.open('payment-coin.php', '_self');
 }
 </script>
 
@@ -160,27 +173,35 @@ function saveTransaction() {
 <section class="settings-bg">
 <div class="container">
   <div class="settings-container" style="text-align:center;">
-    <h3 style="font-weight:700; text-transform:none;">You send <span id='amount' style="color:#87b44c;">40,000 XLMs </span>and<br>
-you will get <span id='token_amount' style="color:#87b44c;">4,000 WGPs </span>in your Stellar Wallet.</h3>
+    <h3 style="font-weight:700; text-transform:none;">Please send <span id='amount' style="color:#87b44c;">40,000 XLMs </span>in order to receive<br>
+<span id='token_amount' style="color:#87b44c;">4,000 WGPs </span>in your Stellar Wallet.</h3>
       <br>
-    <p>Please input your secret key to send XLMs</p>
+    
     <br><br><br>
     <div class="wallet-address">
-      Stellar Wallet Public Key:<br><br>
+      <!-- Stellar Wallet Public Key:<br><br>
       <input id='wallet_address' type="text" class="input-style" value="03249mcnh238hf89wqjd092iij20fh793g7c3c2" id="myInput" readonly>
-      <button onclick="myFunction()" class="btn-copy"><i class="fa fa-copy" aria-hidden="true"></i></button>
+      <button onclick="myFunction()" class="btn-copy"><i class="fa fa-copy" aria-hidden="true"></i></button> -->
       <div style="clear:both;"></div>   
       <br><br>
-      <form id='data_form'>
+      <form id='data_form' hidden>
         Secret Key:<br><br>
-        <input id='secret_key' type="text" name='secret_key' class="input-style private-key">
+        <input id='secret_key' type="text" name='secret_key' class="input-style private-key"><br><br><br><br>
+        <p style="text-align:left;margin-left:6%;">We need your secret key in order for us to :</p><br>
+        <ul style='list-style:none;text-align:left;'><li>1) Establish trust line with the official WGP Issuer Account,</li>
+        <li>2) Send XLMs from your account to us</li><li>3) Send WGP tokens to your Stellar wallet</li>
+        </ul>
         <input id='coins' type='hidden' name='coins'>
-        <br><br><br><br><br>
-        <input id='checkbox' type='checkbox'><span style='padding-left:10px'> I want to send xlms manually</span>
-        <br><br><br><br>
+        <br><br>
+        <a href="javascript:showAskForm()" class="btn">Back</a>
+        <a href="javascript:submitTransaction()" class="btn" style='margin-left: 20px'>Purchase</a>
       </form>
-      <a href="javascript:submitTransaction()" class="btn">Continue</a> 
-      
+      <a id='btn_continue' href="javascript:continueNextPage()" class="btn" style='display:none'>Continue</a>
+      <div id='ask_form'>
+        <label>Do you want to get WGP tokens immediately?</label><br>(If yes, you will be required to enter your Stellar Private Key)<br><br>
+        <a href="javascript:showSecretInput()" class="btn">Yes</a> 
+        <a href="javascript:continueNextPage()" class="btn" style='margin-left: 20px'>No</a> 
+      </div>
     </div>
     <br><br><br>
     <p>If you would like tochange the destination wallet, please send an email to <a href="mailto:admin@wpay.sg" style="color:#87b44c;">admin@wpay.sg</a></p>

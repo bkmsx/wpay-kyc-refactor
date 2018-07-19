@@ -87,7 +87,7 @@ function purchase() {
   <input id='wallet_address' type='hidden' name='wallet_address'>
   <input id='token_amount_form' type='hidden' name='token_amount'>
   <input id='conversion_rate' type='hidden' name='conversion_rate'>
-  <input type='hidden' name='status' value='Waiting'>
+  <input type='hidden' name='status' value='Pending'>
 </form>
 
 <!------------ Navigation start ------------>

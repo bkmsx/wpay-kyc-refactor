@@ -30,14 +30,14 @@ function sendMail($to, $subject, $message) {
 	$mail = new PHPMailer;
 	try {
 		$mail->isSMTP();
-		$mail->Host = 'mail.beepbeepnation.com';
+		$mail->Host = 'mail.wpay.sg';
 		$mail->Port = 587;
 		$mail->SMTPSecure = 'tls';
 		$mail->SMTPAuth = true;
-		$mail->Username = "ico@amazingappventures.ltd";
-		$mail->Password = "48#ZEdS1)kYm";
+		$mail->Username = "hello@wpay.sg";
+		$mail->Password = "H00xiWPay$$";
 
-	    $mail->setFrom('ico@amazingappventures.ltd', 'BeepBeep Nation');
+	    $mail->setFrom('hello@wpay.sg', 'W Green Pay');
 	    $mail->addAddress($to); 
 	    //Content
 	    $mail->isHTML(true);                               

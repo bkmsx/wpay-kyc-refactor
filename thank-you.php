@@ -81,7 +81,7 @@
   <div class="settings-container" style="text-align:center;">
     <h3 style="font-weight:700; text-transform:none;">Your transaction will be verified within <span style="color:#87b44c;">48 hours</span></h3>
     <br><br><br>
-    <p>you’ll be redirected to the dashboard shortly, click <a href="dashboard.html" style="color:#87b44c;">here</a> if nothing happens</p>
+  
     <br><br><br>
     <a href="index.php" class="btn">Dashboard</a>
   </div>

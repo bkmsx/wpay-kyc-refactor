@@ -26,7 +26,7 @@ elseif (empty($date_of_birth)){
     $message = "Date of birth cannot be empty";
 }
 elseif (!preg_match($date_regex, $date_of_birth)) {
-    $message = "Date of birth must have format DD/MM/YYYY";
+    $message = "Date of birth must be in the format: DD/MM/YYYY";
 }
 else{
     // send kyc submission mail

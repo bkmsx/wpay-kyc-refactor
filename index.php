@@ -1,11 +1,12 @@
 <?php
 if(!isset($_COOKIE['email'])) {
   header('Location: sign-in.php');
+  exit;
 }
 if (!isset($_COOKIE['status'])) {
   header('Location: step.php');
+  exit;
 }
-echo BASE_URL;
 ?>
 <!doctype html>
 <html>
@@ -17,7 +18,7 @@ echo BASE_URL;
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src='js/utilities.js'></script>
+
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
@@ -28,6 +29,8 @@ echo BASE_URL;
 <link href="media-queries.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
+<script src='js/utilities.js'></script>
+<script src='js/moment.js'></script>
 <!-- Add sidemenu -->
 <script>
 (function($){
@@ -59,20 +62,18 @@ echo BASE_URL;
         };
         setCookie('status', json.user.status);
         if (json.user.status != 'CLEARED') {
-          $('#kyc_notice').show();
+          $('#kyc_notice_error').show();
+          $('#kyc_notice_ok').hide();
           $('#btn_purchase').click(function(){return false});
           setCookie('status', json.user.status);
           setCookie('first_name', json.user.first_name);
         }
         for (let history of json.histories) {
           row = $('<tr>');
-          row.append($('<td>').html(history['date']));
+          row.append($('<td>').html(moment.utc(history['date']).local().format('DD/MM/YYYY HH:mm:ss')));
           row.append($('<td>').html(history['currency']));
           row.append($('<td>').html(history['amount']));
           row.append($('<td>').html(history['token_amount']));
-          row.append($('<td>').html(history['token_bonus']));
-          row.append($('<td>').html(history['token_number']));
-          row.append($('<td>').html(history['conversion_rate']));
           row.append($('<td>').html(history['status']));
           $('#history_table').append(row);
         }
@@ -146,47 +147,15 @@ function uploadPassport(){
 <div class="container">
   <div class="settings-container">
     <div class="dashboard-table" style="overflow-x:auto;">
-    <table>
-            <tr valign="center">
-              <th>Price in USD</th>
-              <th>No. of tokens not including bonus tokens</th>
-            </tr>
-            <tr>
-              <td>USD 100</td>
-              <td>400</td>
-            </tr>
-            <tr>
-              <td>USD 500</td>
-              <td>2,000</td>
-            </tr>
-            <tr>
-              <td>USD 1,000</td>
-              <td>4,000</td>
-            </tr>
-            <tr>
-              <td>USD 5,000</td>
-              <td>20,000</td>
-            </tr>
-            <tr>
-              <td>USD 10,000</td>
-              <td>40,000</td>
-            </tr>
-            <tr>
-              <td>USD 50,000</td>
-              <td>200,000</td>
-            </tr>
-            <tr>
-              <td>USD 100,000</td>
-              <td>400,000</td>
-            </tr>          
-          </table>
+    
     </div>
     <br>
     <br>
     <div class="wallet-address">
       
       <div style="clear:both;"></div>
-      <label id='kyc_notice' style='color:red' hidden>You haven't passed KYC yet</label>
+      <label id='kyc_notice_error' style='color:red' hidden>You haven't passed KYC yet</label>
+      <lable id='kyc_notice_ok' >You have passed our preliminary KYC. You may proceed to purchase W Green Pay tokens.</label>
       <br><br/>
       <a id='btn_purchase' href="payment-selection.php" class="btn">Purchase</a>          
     </div>
@@ -206,7 +175,7 @@ function uploadPassport(){
           
         </div>
         <br><br>
-        <p>You can only upload jpg, jpeg, png, and pdf file and size is less than or equal to 4mb</p>
+        <p>You may only upload jpg, jpeg, png, and pdf file. File size must be less than or equal to 4 MB</p>
         <br><br><br><br>
         <a href="javascript:uploadPassport()" class="btn">Submit</a>
       </form>
@@ -223,10 +192,7 @@ function uploadPassport(){
       <th>Date</th>
       <th>Currency</th>
       <th>Amount</th>
-      <th>WGP Amount</th>
-      <th>WGP Bonus</th>
-      <th>Total WGP</th>
-      <th>Conversion Rate</th>
+      <th>WGP Tokens</th>
       <th>Status</th>
     </tr>
   </table>
