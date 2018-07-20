@@ -108,7 +108,7 @@ Navigation
 	float:left;
 	margin-top:15px;
 	transition:0.8s;
-	background-image:url(img/logo.png);
+	background-image:url(../img/logo.png);
 	background-size:100%;
 	background-repeat:no-repeat;
 }
@@ -218,7 +218,7 @@ Home & content
 	padding:0; 
 	position:relative; 
 	height:100%;
-	background-image:url(img/bg-main.jpg);
+	background-image:url(../img/bg-main.jpg);
 	background-position:center;
 	background-size:cover;
 	box-sizing:border-box;
@@ -287,7 +287,7 @@ ul.home-btn li {
 #about {
 	position:relative;
 	background-color:#001a3d;
-	background-image:url(img/bg-w.jpg);
+	background-image:url(../img/bg-w.jpg);
 	background-repeat:no-repeat;
 	background-position:left top;
 }
@@ -347,7 +347,7 @@ ul.home-btn li {
 .features-icon img {max-width:223px;}
 
 #token {
-	background-image:url(img/bg-tokensale.jpg);
+	background-image:url(../img/bg-tokensale.jpg);
 	background-position:center;
 	background-size:cover;
 }
@@ -397,7 +397,7 @@ td {
 }
 
 #media {
-	background-image:url(img/bg-pattern-media.jpg);
+	background-image:url(../img/bg-pattern-media.jpg);
 	background-repeat:repeat;
 }
 
@@ -414,8 +414,8 @@ td {
 .media-articles h4 {font-weight:700;}
 
 #roadmap {
-	background: url(img/bg-roadmap-top.png) top left no-repeat, 
- url(img/bg-bottom-trees.jpg) bottom right no-repeat;
+	background: url(../img/bg-roadmap-top.png) top left no-repeat, 
+ url(../img/bg-bottom-trees.jpg) bottom right no-repeat;
     background-size: 100%;
 	background-color:#0e4085;
 	position:relative;
@@ -445,7 +445,7 @@ ul.roadmap {
 ul.roadmap li {padding:5px 0;}
 
 #team {
-	background-image:url(img/bg-pattern-team.jpg);
+	background-image:url(../img/bg-pattern-team.jpg);
 	background-repeat:repeat;
 }
 
@@ -640,7 +640,7 @@ ul#tokenmenu li a:hover {
 .signpage {
 	position: relative;
     background-color: #001a3d;
-    background-image: url(img/bg-w.jpg);
+    background-image: url(../img/bg-w.jpg);
     background-repeat: no-repeat;
     background-position: left top;
 	padding-top:150px;
@@ -711,7 +711,7 @@ Registration page
 ------------------------------------------------------------------- */
 
 .step-bg1 {
-    background: url(img/bg-trees.jpg) top no-repeat;
+    background: url(../img/bg-trees.jpg) top no-repeat;
     background-size: cover;
     background-color: #252015;
     position: relative;
@@ -790,7 +790,7 @@ select {
     -webkit-border-radius: 0px;
     border-radius: 20px;
     appearance: none;
-    background-image: url(img/icon-down-arrow.png);
+    background-image: url(../img/icon-down-arrow.png);
     background-repeat: no-repeat;
     background-position: center right 12px;
     cursor: pointer;
@@ -907,7 +907,7 @@ input[type=radio] {
 }
 
 .calendar {
-    background-image: url(img/icon-calendar.png) !important;
+    background-image: url(../img/icon-calendar.png) !important;
     background-repeat: no-repeat !important;
     background-position: center right !important;
 }

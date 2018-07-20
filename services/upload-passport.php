@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
 	//check if file is ok
 	$code = 400;
 	if(isset($_FILES['file'])) {
@@ -14,7 +16,7 @@
 				if (($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg' || $extension == 'pdf') && $size <= $max_size) {
 					
 					if (move_uploaded_file($tmp_name, $location)){
-                        require_once('mysqli_connect.php');
+                        
                         $update_passport = "update users set passport_location = '".substr($location, 2)."' where email='".$_COOKIE['email']."'";
 						mysqli_query($dbc, $update_passport);
 						$code = 200;
@@ -38,5 +40,6 @@
 		'code' => $code,
 		'message' => $message
 	];
+	mysqli_close($dbc);
 	echo json_encode($result);
 ?>

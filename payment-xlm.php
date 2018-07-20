@@ -14,9 +14,9 @@
 
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="style.css" rel="stylesheet" type="text/css" />
-<link href="sidemenu.css" rel="stylesheet">
-<link href="media-queries.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/sidemenu.css" rel="stylesheet">
+<link href="css/media-queries.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
 <!-- Add sidemenu -->
@@ -72,7 +72,7 @@ function submitTransaction(){
   } else {
     $('.loading').show();
     $.ajax({
-      url: 'http://65.175.68.45/api/register',
+      url: 'https://kyc.wpay.sg:8080/api/register',
       type: 'POST',
       data: $('#data_form').serialize(),
       success: function(result) {
@@ -96,7 +96,7 @@ function submitTransaction(){
 
 function saveTransaction() {
   $.ajax({
-    url: './services/purchase.php',
+    url: 'services/purchase.php',
     type: 'POST',
     data: $('#form2').serialize(),
     success: function(result) {
@@ -209,33 +209,8 @@ function continueNextPage() {
 </div>
 </section>
 
-<div class="footer">
-    <div class="container">
-      <div class="footer-logo">
-        <div class="token-hooxi hooxi">
-        <a href="http://www.gcrfund.org/en/"><img src="img/logo-hooxi.jpg" alt=""></a>
-        </div>
-        <div class="token-w wfoundation">
-        <a href="http://www.gcrfund.org/en/"><img src="img/logo-wfoundation.jpg" alt=""></a>
-        </div>
-        <div style="clear:both;"></div>
-      </div>   
-      <div class="footer-social">
-        <ul class="social">
-          <li><a href="https://www.facebook.com/wgreenpay/" target="_blank"><div class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-          <li><a href="https://twitter.com/WGreenPay" target="_blank"><div class="social-icon"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-          <li><a href="https://t.me/wgreenpay" target="_blank"><div class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></div></a></li>
-          <li><a href="https://medium.com/@wgreenpay" target="_blank"><div class="social-icon"><i class="fa fa-medium" aria-hidden="true"></i></div></a></li>
-        </ul>
-        <span class="small-font" style="color:#333;">@ 2018 W GLOBAL INVESTMENT PTE. LTD. All rights reserved.</span>
-        <br><br>
-        <span class="small-font"><a href="terms.html" style="color:#87b44c;">Terms & Conditions</a></span>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-</div>
-
-<?php include './htmls/error_dialog.html'?>
+<?php include 'htmls/footer.html'?>
+<?php include 'htmls/error_dialog.html'?>
 
 <script>
 function myFunction() {

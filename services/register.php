@@ -1,4 +1,7 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
+require_once(WPAY_PATH.'/services/utils/send-mail.php');
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $date_of_birth = $_POST['date_of_birth'];
@@ -30,8 +33,6 @@ elseif (!preg_match($date_regex, $date_of_birth)) {
 }
 else{
     // send kyc submission mail
-    require_once('send-mail.php');
-    require_once('mysqli_connect.php');
     sendMail($_COOKIE['email'], getApplyKycTitle(), getApplyKycMessage($first_name));
 
     // check Artemis
@@ -39,7 +40,7 @@ else{
     $result_sql = mysqli_query($dbc, $sql_max_id);
     $user = mysqli_fetch_array($result_sql);
 
-    require_once('request_api.php');
+    require_once('utils/request_api.php');
     $url = "https://p3.cynopsis.co/artemis_novumcapital/default/individual_risk";
     $data = array (
         "rfrID"=>$user['user_id'],
@@ -72,8 +73,8 @@ else{
     }
 
     // Update Google sheet
-    require_once('update-sheet.php');
-    updateSheet([$_COOKIE['email'], $first_name." ".$last_name, $date_of_birth, $citizenship, $country, date('d/m/Y h:i:s', time()), $status, $wallet_address], $user['row_number']);
+    // require_once('update-sheet.php');
+    // updateSheet([$_COOKIE['email'], $first_name." ".$last_name, $date_of_birth, $citizenship, $country, date('d/m/Y h:i:s', time()), $status, $wallet_address], $user['row_number']);
 
     // Update database
     $sql = "update users set first_name='"
@@ -96,12 +97,13 @@ else{
     } else {
         $message = "Cannot register. Please try later.";
     }
-    mysqli_close($dbc);
+   
 }
 $result = [
     'code' => $code,
     'message' => $message,
     'user' => $user_object
 ];
+mysqli_close($dbc);
 echo json_encode($result);
 ?>

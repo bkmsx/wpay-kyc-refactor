@@ -1,10 +1,12 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
 $email = $_POST['email'];
 $password = $_POST['password'];
 $user_object = array();
 $code = 400;
 if (!empty($email) && !empty($password)){
-	require_once('mysqli_connect.php');
+	
 	$query = "select * from users where email = '$email'";
 	$result = mysqli_query($dbc, $query);
 	if (mysqli_num_rows($result) > 0){
@@ -23,7 +25,7 @@ if (!empty($email) && !empty($password)){
 	} else {
 		$message = "Email is incorrect";
 	}
-	mysqli_close($dbc);
+	
 } else {
 	$message = 'Email or password cannot be empty';
 }
@@ -32,5 +34,6 @@ $result = [
 	'message' => $message,
 	'user' => $user_object
 ];
+mysqli_close($dbc);
 echo json_encode($result);
 ?>

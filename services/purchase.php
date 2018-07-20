@@ -1,6 +1,7 @@
 <?php
-require_once('mysqli_connect.php');
-require_once('send-mail.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
+require_once(WPAY_PATH.'/services/utils/send-mail.php');
 date_default_timezone_set("UTC");
 $time = date("Y-m-d H:i:s"); 
 $user_email = $_POST['email'];
@@ -19,9 +20,13 @@ token_amount, token_bonus, status, date, conversion_rate) values ('"
 .$_POST['token_amount']."', ".$token_bonus.", '".$_POST['status']."', '$time','"
 .$_POST['conversion_rate']."')";
 if ($_POST['currency'] == "USD") {
-sendMail($user_email, getUsdTransactionDetailTitle(), getUsdTransactionDetailMessage($user_email, $_POST['token_amount']));
+    sendMail($user_email, getUsdTransactionDetailTitle(), getUsdTransactionDetailMessage($user_email, $amount));
+} elseif ($_POST['currency'] == "ETH") {
+    sendMail($user_email, getETHTransactionDetailTitle(), getETHTransactionDetailMessage($amount));
+} elseif ($_POST['currency'] == "BTC") {
+    sendMail($user_email, getBTCTransactionDetailTitle(), getBTCTransactionDetailMessage($amount));
 } else {
-sendMail($user_email, getETHTransactionDetailTitle(), getETHTransactionDetailMessage($_POST['token_amount']));
+    sendMail($user_email, getXLMTransactionDetailTitle(), getXLMTransactionDetailMessage($amount));
 }
 if (mysqli_query($dbc, $update_history_sql)){
     $code = 200;

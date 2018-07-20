@@ -1,5 +1,6 @@
 <?php
-require_once('mysqli_connect.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
 $sql = "select * from nationality";
 $result = mysqli_query($dbc, $sql);
 $nations = array();

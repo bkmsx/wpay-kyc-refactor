@@ -1,5 +1,6 @@
 <?php
-require_once("mysqli_connect.php");
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
 $user_sql = "select * from users where email = '".$_COOKIE['email']."'";
 $user_result = mysqli_query($dbc, $user_sql);
 $user = mysqli_fetch_assoc($user_result);
@@ -23,5 +24,6 @@ $result = [
     'user' => $user,
     'histories' => $histories
 ];
+mysqli_close($dbc);
 echo json_encode($result);
 ?>

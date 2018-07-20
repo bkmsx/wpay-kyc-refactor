@@ -1,5 +1,6 @@
 <?php
-require '../vendor/autoload.php';
+require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
+require WPAY_PATH.'/vendor/autoload.php';
 
 function updateSheet($values, $row){
 	$client = new Google_Client();
