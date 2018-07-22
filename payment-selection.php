@@ -70,16 +70,16 @@ function countPayment(){
   $('#wallet_label').show();
   if ($('#xlm').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price);
-    $('#wallet_label').html('Stellar wallet:');
+    $('#wallet_label').html('Stellar Wallet (to receive WGP tokens. <a href="https://www.stellar.org/laboratory/#account-creator?network=public" target="_blank" style="color:#ffc3a0">Create your Stellar Wallet</a> if you do not have one)');
     conversion_rate = token_price;
   } else if ($('#btc').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price * btc_price);
     $('#conversion_rate').val(token_price * btc_price);
-    $('#wallet_label').html('Bitcoin wallet:');
+    $('#wallet_label').html('Your Bitcoin wallet (to identify your BTC sending address)');
     conversion_rate = token_price * btc_price;
   } else if ($('#eth').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price * eth_price);
-    $('#wallet_label').html('Ethereum wallet:');
+    $('#wallet_label').html('Your Ethereum wallet (to identify your ETH sending address)');
     conversion_rate = token_price * eth_price;
   } else {
     $('#amount').val($('#token_amount').val() * usd_price);
@@ -115,11 +115,31 @@ function submitSummary(){
     setCookie('wallet_address', $('#wallet_address').val())
     setCookie('conversion_rate', conversion_rate);
     if (currency == 'XLM') {
-      window.open('payment-xlm.php', '_self');
+      var regexStellar = /^[A-Za-z0-9]{56}$/;
+      if (regexStellar.test($('#wallet_address').val())) {
+        window.open('payment-xlm.php', '_self');
+      } else {
+        $('#error_message').html('Stellar wallet address is not correct');
+        $('#error_dialog').modal('show');
+      } 
     } else if (currency == 'USD') {
       window.open('payment-usd.php', '_self');
+    } else if (currency == 'ETH') {
+      var regexETH = /^0x[a-fA-F0-9]{40}$/;
+      if (regexETH.test($('#wallet_address').val())) {
+        window.open('payment-coin.php', '_self');
+      } else {
+        $('#error_message').html('Ethereum wallet address is not correct');
+        $('#error_dialog').modal('show');
+      } 
     } else {
-      window.open('payment-coin.php', '_self');
+      var regexBTC = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+      if (regexBTC.test($('#wallet_address').val())) {
+        window.open('payment-coin.php', '_self');
+      } else {
+        $('#error_message').html('Bitcoin wallet address is not correct');
+        $('#error_dialog').modal('show');
+      } 
     }
   } 
 }

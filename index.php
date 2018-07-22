@@ -111,6 +111,11 @@ function uploadPassport(){
     }
   });
 }
+
+function changeFile(event) {
+  var tmppath = URL.createObjectURL(event.target.files[0]);
+  $('#image').attr('src', tmppath);
+}
 </script>
 
 </head>
@@ -169,8 +174,8 @@ function uploadPassport(){
         <div id="hide">
           
           <label class="btn upload-btn">
-            <input type="file" name='file'/>
-            <img src="img/icon-id.png" alt=""><br><br>Upload Your Passport
+            <input type="file" name='file' onchange='changeFile(event)'/>
+            <img id='image' src="img/icon-id.png" alt=""><br><br><span id='file_name'>Upload Your Passport</span>
           </label>
           
         </div>

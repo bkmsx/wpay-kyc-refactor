@@ -24,5 +24,5 @@ while ($user = mysqli_fetch_array($result)) {
     );
     callAPI("POST", $url, $data, $header);
 }
-
+mysqli_close($dbc);
 ?>

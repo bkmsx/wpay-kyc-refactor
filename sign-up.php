@@ -66,7 +66,7 @@ function signUp() {
 <div id="header">
   <div class="blue-line"></div>
   <div class="container"> <span class="logo"><a href="#home">
-    <a href="index.html"><div id="logo"></div></a>
+    <a href="index.php"><div id="logo"></div></a>
     </a></span>
     <ul id="tokenmenu">
       <li><a href="sign-in.php" class="btn">Sign In</a></li>
@@ -97,6 +97,7 @@ function signUp() {
         <div class="clearfix">
           <input type='password' name='confirm_pass' class="input-style" placeholder="Confirm Password" required />
         </div>
+        <p style='font-size:12px' >Password must contain at least one upper case and number</p>
       </form>
       <div class="clearfix">
         <a href="javascript:signUp()" class="btn register-btn">Register</a>

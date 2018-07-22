@@ -79,6 +79,7 @@ function submitTransaction(){
         json = JSON.parse(JSON.stringify(result));
         if (json.code == 200) {
           saveTransaction();
+          setCookie('method', 'auto');
         } else {
           $('.loading').hide();
           $('#error_dialog').modal('show');
@@ -88,7 +89,7 @@ function submitTransaction(){
       error: function(err) {
         $('.loading').hide();
         $('#error_dialog').modal('show');
-          $('#error_message').html('Secret key is not correct');
+        $('#error_message').html('Secret key is not correct');
       }
     })
   }
@@ -187,10 +188,7 @@ function continueNextPage() {
       <form id='data_form' hidden>
         Secret Key:<br><br>
         <input id='secret_key' type="text" name='secret_key' class="input-style private-key"><br><br><br><br>
-        <p style="text-align:left;margin-left:6%;">We need your secret key in order for us to :</p><br>
-        <ul style='list-style:none;text-align:left;'><li>1) Establish trust line with the official WGP Issuer Account,</li>
-        <li>2) Send XLMs from your account to us</li><li>3) Send WGP tokens to your Stellar wallet</li>
-        </ul>
+        
         <input id='coins' type='hidden' name='coins'>
         <br><br>
         <a href="javascript:showAskForm()" class="btn">Back</a>
@@ -198,7 +196,13 @@ function continueNextPage() {
       </form>
       <a id='btn_continue' href="javascript:continueNextPage()" class="btn" style='display:none'>Continue</a>
       <div id='ask_form'>
-        <label>Do you want to get WGP tokens immediately?</label><br>(If yes, you will be required to enter your Stellar Private Key)<br><br>
+        <label>Do you want to get WGP tokens immediately?</label><br><br>(If yes, you will be required to enter your Stellar Private Key<br>
+        <div style='margin-left:120px'>
+          <p style="text-align:left;margin-left:6%;">We need your secret key in order for us to :</p>
+          <ul style='list-style:none;text-align:left;line-height:150%'><li>1) Establish trust line with the official WGP Issuer Account,</li>
+          <li>2) Send XLMs from your account to us</li><li>3) Send WGP tokens to your Stellar wallet)</li>
+          </ul>
+        </div><br>
         <a href="javascript:showSecretInput()" class="btn">Yes</a> 
         <a href="javascript:continueNextPage()" class="btn" style='margin-left: 20px'>No</a> 
       </div>

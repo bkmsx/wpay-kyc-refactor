@@ -40,6 +40,12 @@
     var firstName = getCookie('first_name');
     $('#greeting').html(firstName);
     $('#nav_greeting').html(firstName);
+
+    if (getCookie('method') == 'auto') {
+      $('#manual').hide();
+      $('#auto').show();
+      $('#token_amount').html(getCookie('token_amount') + ' WGP');
+    }
   });
 })(jQuery);
 
@@ -79,7 +85,8 @@
 <section class="settings-bg">
 <div class="container">
   <div class="settings-container" style="text-align:center;">
-    <h3 style="font-weight:700; text-transform:none;">Your transaction will be verified within <span style="color:#87b44c;">48 hours</span></h3>
+    <h3 id='manual' style="font-weight:700; text-transform:none;">Your transaction will be verified within <span style="color:#87b44c;">48 hours</span></h3>
+    <h3 id='auto' style="font-weight:700; text-transform:none;" hidden>We have successfully issued <span id='token_amount' style="color:#87b44c;">100 WGP</span> tokens to your Stellar wallet.</h3>
     <br><br><br>
   
     <br><br><br>

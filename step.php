@@ -14,6 +14,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='js/bootstrap-datepicker.js'></script>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet">
 
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/sidemenu.css" rel="stylesheet">
@@ -64,9 +66,12 @@
 
 })(jQuery);
 
-
 </script>
-
+<style>
+.datepicker {
+color: black ;
+}
+</style>
 </head>
 
 <body>
@@ -133,7 +138,7 @@
       <table>
         <tr valign="top">
           <td class="radio-btn"><input id='check2' type="checkbox" value="value2" oninput="this.className = ''"></td>
-          <td >I confirm that I am not a citizen, permanent resident, or granted indefinite leave to remain in the United States or any jurisdiction in which the purchase of W Green Pay tokens (WGP) is explicitly prohibited or outlawed.</td>
+          <td >I confirm that I am not a citizen of the United States of America or the People's Republic of China, permanent resident, or granted indefinite leave to remain in the United States or any jurisdiction in which the purchase of W Green Pay tokens (WGP) is explicitly prohibited or outlawed.</td>
         </tr>
       </table>
     </div>
@@ -161,24 +166,19 @@
       <input type="text" class="input-style" placeholder="Doe" oninput="this.className = ''" name="last_name">
     </div>
     <div class="col-md-6 v-pad">
-      Date of Birth <br><br>
-      <input name="date_of_birth" type='text' id="datepicker" class="input-style calendar"  placeholder="DD/MM/YYYY" value=""  />
-    </div>
-    <div class="col-md-6 v-pad">
       Citizenship <br><br>
       <select id='citizenship'class="input-style" name="citizenship" oninput="this.className = ''">
-            
-          </select>
+      </select>
     </div>
     <div class="col-md-6 v-pad">
-      Stellar Wallet Address <br><br>
-      <input type="text" class="input-style" placeholder="" name='wallet_address'>
+      Date of Birth <br><br>
+      <input name="date_of_birth" type='text' id="datepicker" class="input-style calendar" placeholder="DD/MM/YYYY" value=""  />
+      <input name="wallet_address" type='hidden' value=''/>
     </div>
     <div class="col-md-6 v-pad">
       Country of Residence <br><br>
       <select id='country' class="input-style" name="country" oninput="this.className = ''">
-            
-          </select>
+      </select>
     </div>
     </div>
     <br>
@@ -219,8 +219,7 @@
 <script>
   $(document).ready(function() {
     $( "#datepicker" ).datepicker({
-      dateFormat: 'dd/mm/yy',//check change
-      changeYear: true
+      format: 'dd/mm/yyyy'
     });
   });
   </script>

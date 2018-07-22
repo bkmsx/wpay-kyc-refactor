@@ -31,7 +31,7 @@ elseif(!preg_match("#[a-z]+#",$password)) {
     $message = "Password must contain lowercase letter";
 } 
 elseif($password != $confirmPass) {
-    $message = "Passwords don't match";
+    $message = "Passwords do not match";
 }
 else {
     

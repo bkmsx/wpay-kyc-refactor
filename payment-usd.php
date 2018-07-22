@@ -65,6 +65,7 @@ function purchase() {
       $('.loading').hide();
       json = JSON.parse(result);
       if (json.code == 200) {
+        setCookie('method', 'manual');
         window.open('thank-you.php', '_self');
       } else {
         $('#error_dialog').modal('show');
@@ -128,7 +129,7 @@ function purchase() {
       <table >
             <tr>
               <td style="text-align:right;">Name :</td>
-              <td style="text-align:left; color:#87b44c;">Amazing Appventures Pte Ltd</td>
+              <td style="text-align:left; color:#87b44c;">W Global Investment Pte. Ltd.</td>
             </tr>
             <tr>
               <td style="text-align:right;">Address :</td>
@@ -136,19 +137,19 @@ function purchase() {
             </tr>
             <tr>
               <td style="text-align:right;">Account Number :</td>
-              <td style="text-align:left; color:#87b44c;">3529528548</td>
+              <td style="text-align:left; color:#87b44c;">503441479301</td>
             </tr>
             <tr>
               <td style="text-align:right;">Swift Code :</td>
-              <td style="text-align:left; color:#87b44c;">UOVBSGSG</td>
+              <td style="text-align:left; color:#87b44c;">OCBCSGSG</td>
             </tr>
             <tr>
               <td style="text-align:right;">Bank Name :</td>
-              <td style="text-align:left; color:#87b44c;">United Overseas Bank Limited Co.</td>
+              <td style="text-align:left; color:#87b44c;">Oversea-Chinese Banking Corporation Limited</td>
             </tr>
             <tr>
               <td style="text-align:right;">Bank Address :</td>
-              <td style="text-align:left; color:#87b44c;">80 Raffles Place UOB Plaza 1</td>
+              <td style="text-align:left; color:#87b44c;">65 Chulia Street, OCBC Centre, Singapore 049513</td>
             </tr>
             <tr>
               <td style="text-align:right;">Comments / Notes :</td>

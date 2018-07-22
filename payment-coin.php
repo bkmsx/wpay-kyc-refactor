@@ -55,7 +55,7 @@
       $('#myInput').val('0x67fd4721d490A5E609cF8e09FCE0a217b91F1546');
       $('#qr_wallet').attr('src', 'img/eth_wallet.png');
     } else if (getCookie('currency') == 'XLM') {
-      $('#myInput').val('GASYLAXG536GZGLZBGQ4JFAYT43XALS64EYTONXWOGRLRVZRBSP74TIT');
+      $('#myInput').val('GC7RAORWLH7CNBGORSHB6DQ36HVIFJXAN7GVQAVBXHRMDNT3USCD5MU2');
       $('#qr_wallet').attr('src', 'img/xlm_wallet.png');
     }
   });
@@ -71,6 +71,7 @@ function purchase() {
       $('.loading').hide();
       json = JSON.parse(result);
       if (json.code == 200) {
+        setCookie('method', 'manual');
         window.open('thank-you.php', '_self');
       } else {
         $('#error_dialog').modal('show');

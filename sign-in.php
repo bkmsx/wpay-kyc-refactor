@@ -74,7 +74,7 @@ function signIn() {
 <div id="header">
   <div class="blue-line"></div>
   <div class="container"> <span class="logo"><a href="#home">
-    <a href="index.html"><div id="logo"></div></a>
+    <a href="index.php"><div id="logo"></div></a>
     </a></span>
     <ul id="tokenmenu">
       <li><a href="sign-in.php" class="btn">Sign In</a></li>
