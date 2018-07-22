@@ -8,15 +8,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src='js/utilities.js'></script>
-
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- End of Bootstrap & Jquery -->
+
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/sidemenu.css" rel="stylesheet">
 <link href="css/media-queries.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
+<script src='js/utilities.js'></script>
 <!-- Add sidemenu -->
 <script>
 (function($){
