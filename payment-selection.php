@@ -50,6 +50,7 @@ var conversion_rate = 10;
       success: function(result) {
         json = JSON.parse(JSON.stringify(result));
         btc_price = json.data.quotes.BTC.price;
+        countPayment();
       }
     });
     $.ajax({
@@ -59,9 +60,9 @@ var conversion_rate = 10;
         json = JSON.parse(JSON.stringify(result));
         eth_price = json.data.quotes.ETH.price;
         usd_price = 2;
+        countPayment();
       }
     });
-    countPayment();
   });
 })(jQuery);
 function countPayment(){
@@ -105,8 +106,12 @@ function submitSummary(){
   }
   
   var amount = $('#token_amount').val();
+  var regexAmount = /^[0-9]*$/;
   if( amount < 1) {
     $('#error_message').html('Minimum Purchase Amount Is 100 Tokens');
+    $('#error_dialog').modal('show');
+  } else if (!regexAmount.test(amount)){
+    $('#error_message').html('Please enter only whole number of tokens');
     $('#error_dialog').modal('show');
   } else {
     var currency = $("input[name=currency]:checked").val();

@@ -69,7 +69,7 @@ else{
         }	
     }
     if ($status == "CLEARED") {
-        sendMail($_COOKIE['email'], getSuccessKycTitle(), getSuccessKycMessage($first_name, $wallet_address));
+        sendMail($_COOKIE['email'], getSuccessKycTitle(), getSuccessKycMessage($first_name));
     }
 
     // Update Google sheet

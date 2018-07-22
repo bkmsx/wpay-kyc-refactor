@@ -14,8 +14,8 @@ use PHPMailer\PHPMailer\Exception;
 function testMail($test_mail, $test_name) {
 	// sendMail($test_mail, getApplyKycTitle(), getApplyKycMessage($test_name));
 	// sendMail($test_mail, getSuccessKycTitle(), getSuccessKycMessage($test_name, "0x9208b9e23ecdeefbbbe65d7022d19f9d4a9d64a4"));
-	// sendMail($test_mail, getApplyTransactionTitle(), getApplyTransactionMessage($test_name, "0x9208b9e23ecdeefbbbe65d7022d19f9d4a9d64a4"));
-	// sendMail($test_mail, getSuccessTransactionTitle(), getSuccessTransactionMessage($test_name, "0x9208b9e23ecdeefbbbe65d7022d19f9d4a9d64a4"));
+	// sendMail($test_mail, getApplyTransactionTitle(), getApplyTransactionMessage($test_name));
+	// sendMail($test_mail, getSuccessTransactionTitle(), getSuccessTransactionMessage($test_name));
 	// sendMail($test_mail, getResubmissionTitle(), getResubmissionMessage($test_name));
 	// sendMail($test_mail, getTransactionResubmissionTitle(), getTransactionResubmissionMessage($test_name));
 	// sendMail($test_mail, getUsdTransactionDetailTitle(), getUsdTransactionDetailMessage($test_mail, "100"));
@@ -55,7 +55,7 @@ function getApplyKycTitle() {
 }
 
 function getApplyKycMessage($username) {
-	$message = file_get_contents("../mail_templates/apply_kyc.html");
+	$message = file_get_contents(WPAY_PATH."/mail_templates/apply_kyc.html");
 	$message = str_replace("%username%", $username, $message);
 	return $message;
 }
@@ -66,10 +66,9 @@ function getSuccessKycTitle() {
 	return $title;
 }
 
-function getSuccessKycMessage($username, $walletaddress) {
+function getSuccessKycMessage($username) {
 	$message = file_get_contents(WPAY_PATH."/mail_templates/success_kyc.html");
 	$message = str_replace("%username%", $username, $message);
-	$message = str_replace("%walletaddress%", $walletaddress, $message);
 	return $message;
 }
 
@@ -79,10 +78,9 @@ function getApplyTransactionTitle() {
 	return $title;
 }
 
-function getApplyTransactionMessage($username, $walletaddress) {
+function getApplyTransactionMessage($username) {
 	$message = file_get_contents(WPAY_PATH."/mail_templates/apply_transaction.html");
 	$message = str_replace("%username%", $username, $message);
-	$message = str_replace("%walletaddress%", $walletaddress, $message);
 	return $message;
 }
 
@@ -92,10 +90,9 @@ function getSuccessTransactionTitle() {
 	return $title;
 }
 
-function getSuccessTransactionMessage($username, $walletaddress) {
+function getSuccessTransactionMessage($username) {
 	$message = file_get_contents(WPAY_PATH."/mail_templates/success_transaction.html");
 	$message = str_replace("%username%", $username, $message);
-	$message = str_replace("%walletaddress%", $walletaddress, $message);
 	return $message;
 }
 
