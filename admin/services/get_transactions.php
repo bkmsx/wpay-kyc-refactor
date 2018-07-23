@@ -7,7 +7,7 @@ if (isset($_GET['transaction_id'])) {
     $transaction = mysqli_fetch_assoc($transaction_result);
     echo json_encode($transaction);
 } else {
-    $transactions_sql = "select * from transactions";
+    $transactions_sql = "select * from transactions order by date desc";
     $transactions_result = mysqli_query($dbc, $transactions_sql);
     $transactions = array();
     while($transaction = mysqli_fetch_assoc($transactions_result)) {

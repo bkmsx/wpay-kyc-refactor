@@ -2,6 +2,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/paths.php');
 require_once(WPAY_PATH.'/services/utils/mysqli_connect.php');
 require_once(WPAY_PATH.'/services/utils/send-mail.php');
+date_default_timezone_set("UTC");
+$time = date("Y-m-d H:i:s"); 
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $date_of_birth = $_POST['date_of_birth'];
@@ -82,7 +84,7 @@ else{
     .$last_name."', date_birth='"
     .$date_of_birth."', citizenship='"
     .$citizenship."',country='"
-    .$country."', date=now(), status='"
+    .$country."', date='$time', update_date='$time', status='"
     .$status."', wallet_address='"
     .$wallet_address."' where email='"
     .$_COOKIE['email']."'";

@@ -10,8 +10,8 @@ while ($transaction = mysqli_fetch_array($transaction_result)) {
 		$reject_transaction_sql = "update transactions set status = 'Canceled' where transaction_id = '".$transaction['transaction_id']."'";
 		mysqli_query($dbc, $reject_transaction_sql);
 		echo "Canceled  <br/>";
-		$name = explode("@", $transaction['user_email'])[0];
-		sendMail($transaction['user_email'], getTransactionResubmissionTitle(), getTransactionResubmissionMessage($name));
+		$name = explode("@", $transaction['email'])[0];
+		sendMail($transaction['email'], getTransactionResubmissionTitle(), getTransactionResubmissionMessage($name));
 	}
 }
 mysqli_close($dbc);
