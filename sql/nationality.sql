@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 03, 2018 at 02:11 PM
--- Server version: 5.5.59-cll
--- PHP Version: 5.6.30
+-- Host: localhost
+-- Generation Time: Jul 23, 2018 at 10:46 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `makeacha_beepbeepnation`
+-- Database: `wpay`
 --
 
 -- --------------------------------------------------------

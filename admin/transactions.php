@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 <link rel='stylesheet' href='css/style.css'>
 <script>
     $(function() {
@@ -36,7 +36,7 @@
                     row.append($('<td>').html(transaction['wallet_address']));
                     row.append($('<td>').html(transaction['status']));
                     row.append($('<td>').html(transaction['date']));
-                    row.append('<td><button class="btn btn-primary btn-xs" onclick="editTransaction(' + transaction['transaction_id'] + ')"><span class="glyphicon glyphicon-pencil"></span></button></td>');
+                    row.append('<td style="text-align:center"><button class="btn btn-primary btn-xs" onclick="editTransaction(' + transaction['transaction_id'] + ')"><span class="glyphicon glyphicon-pencil"></span></button></td>');
                     $('#transaction_table').append(row);
                     index++;
                 }
@@ -89,22 +89,24 @@
 <div class="container">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-20">
         <h4>Transaction list</h4>
         <div class="table-responsive">          
-          <table id="transaction_table" class="table table-bordred table-striped">   
+          <table id="transaction_table" class="table table-bordred table-striped" style='table-layout: fixed;word-break:break-word'>   
             <thead>
-            <th>#</th>
-            <th>Email</th>
-            <th>Currency</th>
-            <th>Amount</th>
-            <th>Token amount</th>
-            <th>Token bonus</th>
-            <th>Conversion rate</th>
-            <th>Wallet Address</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Edit</th>
+            <tr class='d-flex'>
+              <th class='col-md-2'>#</th>
+              <th class='col-md-6'>Email</th>
+              <th class='col-md-3'>Currency</th>
+              <th class='col-md-3'>Amount</th>
+              <th class='col-md-3'>Token amount</th>
+              <th class='col-md-3'>Token bonus</th>
+              <th class='col-md-4'>Conversion rate</th>
+              <th class='col-md-8'>Wallet Address</th>
+              <th class='col-md-3'>Status</th>
+              <th class='col-md-4'>Date</th>
+              <th class='col-md-2'>Edit</th>
+            </tr>
             </thead>
             <tbody>
             </tbody>     
