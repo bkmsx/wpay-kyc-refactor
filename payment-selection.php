@@ -71,7 +71,7 @@ function countPayment(){
   $('#wallet_label').show();
   if ($('#xlm').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price);
-    $('#wallet_label').html('Stellar Wallet (to receive WGP tokens. <a href="https://www.stellar.org/laboratory/#account-creator?network=public" target="_blank" style="color:#ffc3a0">Create your Stellar Wallet</a> if you do not have one)');
+    $('#wallet_label').html('Stellar Wallet (to receive WGP tokens. <a href="https://www.stellar.org/lumens/wallets/" target="_blank" style="color:#ffc3a0">Create your Stellar Wallet</a> if you do not have one)');
     conversion_rate = token_price;
   } else if ($('#btc').is(':checked')) {
     $('#amount').val($('#token_amount').val() * token_price * btc_price);
@@ -187,7 +187,7 @@ function submitSummary(){
     <div class="clearfix">
       <label>WGP Token Amount</label> <br><br>
       <input id='token_amount' type="number" class="input-style" onkeyup='countPayment()' value="100">
-      <br><br><br><br>1 WGP = US$ 2<br>1 WGP = 10 XLM
+      <br><br><br><br>1 WGP = 2 USD<br>1 WGP = 10 XLM
 
     </div>
     <div class="clearfix">

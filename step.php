@@ -1,3 +1,13 @@
+<?php
+  if (!isset($_COOKIE['email'])) {
+    header('Location: sign-up.php');
+    exit;
+  }
+  if (isset($_COOKIE['status'])) {
+    header('Location: index.php');
+    exit;
+  }
+?>
 <!doctype html>
 <html>
 <head>

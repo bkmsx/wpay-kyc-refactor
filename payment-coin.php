@@ -140,7 +140,7 @@ function purchase() {
     <br><br><br>
     <h3 style="font-weight:700; text-transform:none;">Upon confirmation, you will receive:<br><span id='token_amount' style="color:#87b44c;">4,000 eminent tokens</span></h3>
     <br>
-    <p>You will receive a confirmation email once the transaction is validated (this may take up a few hours).
+    <p>You will receive a confirmation email once the transaction is validated (this may take up to a few hours).
 We may email you with an additional request for KYC documents. If we do not receive your documentation, your funds will be returned to your wallet.</p>
     <br><br><br>
     <a href="javascript:purchase()" class="btn">Purchase</a> 

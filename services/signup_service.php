@@ -18,17 +18,9 @@ elseif (empty($confirmPass)) {
 elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     $message = "Invalid email format";
 } 
-elseif (strlen($password) < '6') {
-    $message = "Password must contain at least 6 characters";
-} 
-elseif(!preg_match("#[0-9]+#",$password)) {
-    $message = "Password must contain number!";
-}
-elseif(!preg_match("#[A-Z]+#",$password)) {
-    $message = "Password must contain capital letter";
-}
-elseif(!preg_match("#[a-z]+#",$password)) {
-    $message = "Password must contain lowercase letter";
+elseif (strlen($password) < '6' || !preg_match("#[0-9]+#",$password) ||
+!preg_match("#[A-Z]+#",$password) || !preg_match("#[a-z]+#",$password)) {
+    $message = "Passwords must be at least 6 characters long, contain uppercase letter, lowercase letter and numeric character";
 } 
 elseif($password != $confirmPass) {
     $message = "Passwords do not match";

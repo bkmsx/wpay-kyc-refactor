@@ -196,11 +196,11 @@ function continueNextPage() {
       </form>
       <a id='btn_continue' href="javascript:continueNextPage()" class="btn" style='display:none'>Continue</a>
       <div id='ask_form'>
-        <label>Do you want to get WGP tokens immediately?</label><br><br>(If yes, you will be required to enter your Stellar Private Key<br>
+        <label>Do you want to get WGP tokens immediately?</label><br><br>If yes, you will be required to enter your Stellar Private Key<br>
         <div style='margin-left:120px'>
           <p style="text-align:left;margin-left:6%;">We need your secret key in order for us to :</p>
-          <ul style='list-style:none;text-align:left;line-height:150%'><li>1) Establish trust line with the official WGP Issuer Account,</li>
-          <li>2) Send XLMs from your account to us</li><li>3) Send WGP tokens to your Stellar wallet)</li>
+          <ul style='list-style:none;text-align:left;line-height:150%'><li>1) Establish trust line with the official WGP Issuer Account</li>
+          <li>2) Send XLMs from your account to us</li><li>3) Send WGP tokens to your Stellar wallet</li>
           </ul>
         </div><br>
         <a href="javascript:showSecretInput()" class="btn">Yes</a> 
@@ -208,7 +208,7 @@ function continueNextPage() {
       </div>
     </div>
     <br><br><br>
-    <p>If you would like tochange the destination wallet, please send an email to <a href="mailto:admin@wpay.sg" style="color:#87b44c;">admin@wpay.sg</a></p>
+    <p>If you would like to change the destination wallet, please send an email to <a href="mailto:admin@wpay.sg" style="color:#87b44c;">admin@wpay.sg</a></p>
   </div>
 </div>
 </section>

@@ -96,8 +96,9 @@ function signUp() {
         </div>
         <div class="clearfix">
           <input type='password' name='confirm_pass' class="input-style" placeholder="Confirm Password" required />
+          <!-- <p style='font-size:12px' >Password must contain at least one upper case and number</p> -->
         </div>
-        <p style='font-size:12px' >Password must contain at least one upper case and number</p>
+        
       </form>
       <div class="clearfix">
         <a href="javascript:signUp()" class="btn register-btn">Register</a>
